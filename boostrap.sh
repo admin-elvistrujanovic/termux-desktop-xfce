@@ -22,11 +22,10 @@ sleep 1
 
 apt update && apt upgrade -y
 apt install -y wget
-rm $PREFIX/etc/apt/sources.list.d/termux-desktop-xfce.list
-wget -P $PREFIX/etc/apt/sources.list.d https://raw.githubusercontent.com/Yisus7u7/termux-desktop-xfce/gh-pages/termux-desktop-xfce.list
 apt install -y x11-repo 
 apt update
-apt install -y xfce4 tigervnc xfce4-goodies termux-desktop-xfce breeze-cursor-theme kvantum ttf-microsoft-cascadia audacious leafpad pavucontrol-qt hexchat geany synaptic 
+apt install -y xwayland xorg-server-xvfb termux-x11-nightly
+apt install -y xfce4 tigervnc xfce4-goodies termux-desktop-xfce breeze-cursor-theme kvantum ttf-microsoft-cascadia audacious leafpad pavucontrol-qt hexchat geany synaptic gimp
 apt install -y firefox
 
 echo "boostrap data..."
@@ -37,6 +36,7 @@ mv $HOME/.vnc $HOME/.backup
 cd $HOME
 
 echo "Downloading wallpapers and xstartup..."
+export DISPLAY=:0
 wget https://github.com/Yisus7u7/termux-desktop-lxqt/releases/download/data/termux_desktop_lxqt_data.tar.xz
 tar -xvf termux_desktop_lxqt_data.tar.xz
 rm termux_desktop_lxqt_data.tar.xz
